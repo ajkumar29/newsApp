@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Text, FlatList } from "react-native";
+import { StyleSheet, Text, FlatList, View, SafeAreaView } from "react-native";
 import Article from "./src/components/Article";
+import AppStatusBar from "./src/components/AppStatusBar";
+
+const THEME_COLOR = "#285E29";
 
 export default function App() {
   const url =
@@ -33,16 +36,43 @@ export default function App() {
   };
 
   return (
-    <FlatList
-      data={articles}
-      renderItem={({ item }) => {
-        return <Article article={item} />;
-      }}
-      keyExtractor={(item) => item.url}
-      refreshing={refreshing}
-      onRefresh={handleRefresh}
-    />
+    <React.Fragment>
+      <SafeAreaView style={styles.topSafeArea} />
+      <Text style={styles.header}>AJ News App</Text>
 
-    // <Text>{JSON.stringify(articles)}</Text>
+      <View style={styles.container}>
+        <FlatList
+          data={articles}
+          renderItem={({ item }) => {
+            return <Article article={item} />;
+          }}
+          keyExtractor={(item) => item.url}
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
+        />
+      </View>
+    </React.Fragment>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  header: {
+    color: "#000",
+    fontSize: 20,
+    textAlign: "center",
+  },
+  topSafeArea: {
+    flex: 0,
+    backgroundColor: THEME_COLOR,
+  },
+  bottomSafeArea: {
+    flex: 1,
+    backgroundColor: THEME_COLOR,
+  },
+});
