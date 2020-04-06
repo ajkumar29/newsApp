@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, FlatList, View, SafeAreaView } from "react-native";
+import { StyleSheet, Text, FlatList, SafeAreaView } from "react-native";
 import Article from "./src/components/Article";
 import AppStatusBar from "./src/components/AppStatusBar";
 
@@ -37,10 +37,8 @@ export default function App() {
 
   return (
     <React.Fragment>
-      <SafeAreaView style={styles.topSafeArea} />
       <Text style={styles.header}>AJ News App</Text>
-
-      <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
         <FlatList
           data={articles}
           renderItem={({ item }) => {
@@ -50,7 +48,7 @@ export default function App() {
           refreshing={refreshing}
           onRefresh={handleRefresh}
         />
-      </View>
+      </SafeAreaView>
     </React.Fragment>
   );
 }
