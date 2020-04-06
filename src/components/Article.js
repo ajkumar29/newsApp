@@ -2,7 +2,7 @@ import React from "react";
 import { View, Linking, TouchableNativeFeedback } from "react-native";
 import { Text, Button, Card, Divider } from "react-native-elements";
 import moment from "moment";
-const Article = ({ article }) => {
+const Article = ({ article, ...props }) => {
   const { title, description, publishedAt, source, urlToImage, url } = article;
   const { noteStyle, featuredTitleStyle } = styles;
   const time = moment(publishedAt || moment.now()).fromNow();
